@@ -2,29 +2,14 @@
   <div class="category-admin">
     <b-form>
       <input id="category-id" type="hidden" v-model="category.id" />
-      <b-form-group label="Nome:" label-for="category-name">
+      <b-form-group label="Nome:" label-for="category-nome">
         <b-form-input
-          id="category-name"
+          id="category-nome"
           type="text"
-          v-model="category.name"
+          v-model="category.nome"
           required
           :readonly="mode === 'remove'"
           placeholder="Informe o Nome da Categoria..."
-        />
-      </b-form-group>
-      <b-form-group label="Categoria Pai:" label-for="category-parentId">
-        <b-form-select
-          v-if="mode === 'save'"
-          id="category-parentId"
-          :options="categories"
-          v-model="category.parentId"
-        />
-        <b-form-input
-          v-else
-          id="category-parentId"
-          type="text"
-          v-model="category.path"
-          readonly
         />
       </b-form-group>
       <b-button variant="primary" v-if="mode === 'save'" @click="save"
@@ -66,8 +51,7 @@ export default {
       categories: [],
       fields: [
         { key: "id", label: "Código", sortable: true },
-        { key: "name", label: "Nome", sortable: true },
-        { key: "path", label: "Caminho", sortable: true },
+        { key: "nome", label: "Nome", sortable: true },
         { key: "actions", label: "Ações" },
       ],
     };
@@ -76,9 +60,8 @@ export default {
     loadCategories() {
       const url = `${baseApiUrl}/categories`;
       axios.get(url).then((res) => {
-        // this.categories = res.data
-        this.categories = res.data.map((category) => {
-          return { ...category, value: category.id, text: category.path };
+        this.categories = res.data.categorias.map((categoria) => {
+          return { ...categoria, value: categoria.id, text: categoria.nome };
         });
       });
     },

@@ -1,11 +1,10 @@
 <template>
-  <div class="article-by-id">
+  <div class="product-by-id">
     <PageTitle
       icon="fa fa-file-o"
-      :main="article.name"
-      :sub="article.description"
+      :main="product.nome"
+      :sub="product.description"
     />
-    <div class="article-content" v-html="article.content"></div>
   </div>
 </template>
 
@@ -17,19 +16,19 @@ import axios from "axios";
 import PageTitle from "../template/PageTitle";
 
 export default {
-  name: "ArticleById",
+  name: "ProductById",
   components: { PageTitle },
   data: function () {
     return {
-      article: {},
+      product: {},
     };
   },
   mounted() {
-    const url = `${baseApiUrl}/articles/${this.$route.params.id}`;
-    axios.get(url).then((res) => (this.article = res.data));
+    const url = `${baseApiUrl}/products/${this.$route.params.id}`;
+    axios.get(url).then((res) => (this.product = res.data));
   },
   updated() {
-    document.querySelectorAll(".article-content pre.ql-syntax").forEach((e) => {
+    document.querySelectorAll(".product-content pre.ql-syntax").forEach((e) => {
       hljs.highlightBlock(e);
     });
   },
@@ -37,13 +36,13 @@ export default {
 </script>
 
 <style>
-.article-content {
+.product-content {
   background-color: #fff;
   border-radius: 8px;
   padding: 25px;
 }
 
-.article-content pre {
+.product-content pre {
   padding: 20px;
   border-radius: 8px;
   font-size: 1.2rem;
@@ -51,11 +50,11 @@ export default {
   color: #fff;
 }
 
-.article-content img {
+.product-content img {
   max-width: 100%;
 }
 
-.article-content :last-child {
+.product-content :last-child {
   margin-bottom: 0px;
 }
 </style>

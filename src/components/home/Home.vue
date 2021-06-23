@@ -2,8 +2,8 @@
   <div class="home">
     <PageTitle icon="fa fa-home" main="Dashboard" />
     <div class="stats">
-      <Stat title="Produtos" :value="0" icon="fa fa-barcode" color="#3bc480" />
-      <Stat title="Categorias" :value="0" icon="fa fa-folder" color="#d54d50" />
+      <Stat title="Produtos" :value="stat.products" icon="fa fa-barcode" color="#3bc480" />
+      <Stat title="Categorias" :value="stat.categories" icon="fa fa-folder" color="#d54d50" />
     </div>
   </div>
 </template>

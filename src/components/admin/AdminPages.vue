@@ -22,7 +22,7 @@
 
 <script>
 import PageTitle from "../template/PageTitle";
-import ProdutoAdmin from "./ArticleAdmin";
+import ProdutoAdmin from "./ProductAdmin";
 import CategoriaAdmin from "./CategoryAdmin";
 
 export default {

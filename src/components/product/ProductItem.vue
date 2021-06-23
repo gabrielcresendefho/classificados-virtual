@@ -1,27 +1,27 @@
 <template>
-  <div class="article-item">
-    <router-link :to="{ name: 'articleById', params: { id: article.id } }">
-      <div class="article-item-image d-none d-sm-block">
+  <div class="product-item">
+    <router-link :to="{ name: 'productById', params: { id: product.id } }">
+      <div class="product-item-image d-none d-sm-block">
         <img
-          v-if="article.imageUrl"
-          :src="article.imageUrl"
+          v-if="product.imageUrl"
+          :src="product.imageUrl"
           height="150"
           width="150"
-          alt="Article"
+          alt="Product"
         />
         <img
           v-else
-          src="@/assets/article.png"
+          src="@/assets/product.png"
           height="150"
           width="150"
-          alt="Article"
+          alt="Product"
         />
       </div>
-      <div class="article-item-info">
-        <h2>{{ article.name }}</h2>
-        <p>{{ article.description }}</p>
-        <span class="article-item-author">
-          <strong>Autor: </strong>{{ article.author }}
+      <div class="product-item-info">
+        <h2>{{ product.nome }}</h2>
+        <p>{{ product.description }}</p>
+        <span class="product-item-author">
+          <strong>Autor: </strong>{{ product.author }}
         </span>
       </div>
     </router-link>
@@ -30,13 +30,13 @@
 
 <script>
 export default {
-  name: "ArticleItem",
-  props: ["article"],
+  name: "ProductItem",
+  props: ["product"],
 };
 </script>
 
 <style>
-.article-item {
+.product-item {
   border-radius: 8px;
   margin-bottom: 20px;
   background-color: #fff;
@@ -45,34 +45,34 @@ export default {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 }
 
-.article-item a {
+.product-item a {
   display: flex;
   align-items: flex-start;
   text-decoration: none;
   color: #000;
 }
 
-.article-item-info h2 {
+.product-item-info h2 {
   font-size: 1.7rem;
 }
 
-.article-item-image {
+.product-item-image {
   padding-right: 20px;
   margin-right: 20px;
   border-right: 1px solid #aaa;
 }
 
-.article-item-image img {
+.product-item-image img {
   border-radius: 5px;
 }
 
-.article-item-info {
+.product-item-info {
   display: flex;
   align-self: stretch;
   flex-direction: column;
 }
 
-.article-item-info p {
+.product-item-info p {
   flex: 1;
   color: #555;
   font-size: 1.1rem;

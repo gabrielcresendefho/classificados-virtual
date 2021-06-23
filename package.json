@@ -8,12 +8,14 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.0",
     "axios": "0.18.0",
     "bootstrap-vue": "2.0.0-rc.11",
     "font-awesome": "4.7.0",
     "highlightjs": "9.10.0",
     "liquor-tree": "0.2.32",
     "register-service-worker": "^1.7.1",
+    "uid": "^2.0.0",
     "vue": "^2.6.11",
     "vue-gravatar": "1.2.1",
     "vue-mq": "0.2.1",

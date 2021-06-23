@@ -1,16 +1,16 @@
 <template>
-  <div class="articles-by-category">
-    <PageTitle icon="fa fa-folder-o" :main="category.name" sub="Categoria" />
+  <div class="products-by-category">
+    <PageTitle icon="fa fa-folder-o" :main="category.nome" sub="Categoria" />
     <ul>
-      <li v-for="article in articles" :key="article.id">
-        <ArticleItem :article="article" />
+      <li v-for="product in products" :key="product.id">
+        <ProductItem :product="product" />
       </li>
     </ul>
     <div class="load-more">
       <button
         v-if="loadMore"
         class="btn btn-lg btn-outline-primary"
-        @click="getArticles"
+        @click="getProducts"
       >
         Carregar Mais Artigos
       </button>
@@ -22,15 +22,15 @@
 import { baseApiUrl } from "@/global";
 import axios from "axios";
 import PageTitle from "../template/PageTitle";
-import ArticleItem from "./ArticleItem";
+import ProductItem from "./ProductItem";
 
 export default {
-  name: "ArticlesByCategory",
-  components: { PageTitle, ArticleItem },
+  name: "ProductsByCategory",
+  components: { PageTitle, ProductItem },
   data: function () {
     return {
       category: {},
-      articles: [],
+      products: [],
       page: 1,
       loadMore: true,
     };
@@ -40,10 +40,10 @@ export default {
       const url = `${baseApiUrl}/categories/${this.category.id}`;
       axios(url).then((res) => (this.category = res.data));
     },
-    getArticles() {
-      const url = `${baseApiUrl}/categories/${this.category.id}/articles?page=${this.page}`;
+    getProducts() {
+      const url = `${baseApiUrl}/categories/${this.category.id}/products?page=${this.page}`;
       axios(url).then((res) => {
-        this.articles = this.articles.concat(res.data);
+        this.products = this.products.concat(res.data);
         this.page++;
 
         if (res.data.length === 0) this.loadMore = false;
@@ -53,29 +53,29 @@ export default {
   watch: {
     $route(to) {
       this.category.id = to.params.id;
-      this.articles = [];
+      this.products = [];
       this.page = 1;
       this.loadMore = true;
 
       this.getCategory();
-      this.getArticles();
+      this.getProducts();
     },
   },
   mounted() {
     this.category.id = this.$route.params.id;
     this.getCategory();
-    this.getArticles();
+    this.getProducts();
   },
 };
 </script>
 
 <style>
-.articles-by-category ul {
+.products-by-category ul {
   list-style-type: none;
   padding: 0px;
 }
 
-.articles-by-category .load-more {
+.products-by-category .load-more {
   display: flex;
   flex-direction: column;
   align-items: center;
